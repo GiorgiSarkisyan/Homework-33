@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="temperature"></div>
+    <script>
+      fetch('https://api.openweathermap.org/data/2.5/weather?lat=50&lon=50&appid=07883a9bf9cb9178777b5a3fd800288f')
+        .then(response => response.json())
+        .then(data => {
+          const temperature = data.main.temp;
+          const temperatureDiv = document.getElementById('temperature');
+          temperatureDiv.innerHTML = `<h2 class="temperatureTitle"> Today's temperature is ${temperature} </h2>`
+        })
+        .catch(error => {
+          console.log('Error:', error);
+          temperatureDiv.textContent = 'Failed to fetch temperature data.';
+        });
+    </script>
+    <style>
+        .temperatureTitle{
+            color: red;
+        }
+    </style>
+  </body>
+</html>
